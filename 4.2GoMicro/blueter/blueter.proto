@@ -1,0 +1,26 @@
+syntax = "proto3" ;
+package blueter ;
+option go_package = "./;blueter";
+service Blueter{
+  rpc Hello(HelloRequest) returns (HelloResponse){}
+}
+
+//需要把protoc-gen-go.exe和protoc-gen-micro.exe都拷贝到gopath/bin目录下
+//加上option go_package = "./;blueter"; 参考https://blog.csdn.net/fujian9544/article/details/116809779
+//option go_package = "path;name";
+//    path 表示生成的go文件的存放地址，会自动生成目录的。
+//    name 表示生成的go文件所属的包名
+//终端输入 protoc --micro_out=.  --go_out=./ blueter.proto
+
+
+message HelloRequest{
+  string from =1 ;
+  string to =2 ;
+  string msg =3 ;
+}
+
+message HelloResponse{
+  string from = 1 ;
+  string to =2 ;
+  string msg = 3 ;
+}
